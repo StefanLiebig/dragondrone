@@ -18,5 +18,5 @@ Clojure compared to newLISP is *heavy-weighted* and I wondered how far I would c
 
 Copyright © 2014 Stefan Liebig
 
-Distributed under the Eclipse Public License.
+Distributed under the [Eclipse Public License 1.0](https://www.eclipse.org/legal/epl-v10.html)
 
