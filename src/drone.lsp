@@ -94,10 +94,10 @@
 	(drone-move 1 amount 0 0 0 0))
 
 (define (drone-tilt-left amount)
-	(drone-move 1 (sub amount) 0 0 0))
+	(drone-tilt-right (sub amount)))
 
 (define (drone-tilt-front amount)
-	(drone-move 1 0 (sub amount) 0 0))
+	(drone-tilt-back (sub amount)))
 
 (define (drone-tilt-back amount)
 	(drone-move 1 0 amount 0 0))
@@ -106,13 +106,13 @@
 	(drone-move 1 0 0 amount 0))
 
 (define (drone-down amount)
-	(drone-move 1 0 0 (sub amount) 0))
+	(drone-up (sub amount)))
 
 (define (drone-spin-right amount)
 	(drone-move 1 0 0 0 amount))
 
 (define (drone-spin-left amount)
-	(drone-move 1 0 0 0 (sub amount)))
+	(drone-spin-right (sub amount)))
 
 (define (drone-keep-alive)
 	(while true
