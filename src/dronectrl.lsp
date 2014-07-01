@@ -9,6 +9,7 @@
 (define (drone-control)
 	(while (!= (let (ch (get-key)) (process-key ch)) key-tab)))
 
+;; initial speed (0..1.0)
 (set 'speed 0.1)
 
 (define (process-key key)
@@ -52,11 +53,11 @@
 		((= key key-space)
 			(println "hover")
 			(drone-hover))
-		((= key key-lt)
+		((in? key '(key-lt key-plus))
 			(println "take-off")
 			(drone-init)
 			(drone-take-off))
-		((= key key-gt)
+		((in? key '(key-gt key-hash))
 			(println "land")
 			(drone-land)
 			(drone-stop))
@@ -76,5 +77,8 @@
 
 (define (safe-nth ind li)
 	 (nth (max (min ind (sub (length li) 1)) 0) li))
+
+(define (in? v li)
+	(!= nil (dolist (x li (= (eval x) v)) nil)))
 
 (s-log "drone control loaded")
