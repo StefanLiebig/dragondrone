@@ -1,5 +1,5 @@
 ;;
-;; newLISP Simple AR.Drone control
+;; newLISP Simple AR.Drone control "UI"
 ;;
 
 (load "ncurses.lsp")

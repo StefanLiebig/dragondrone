@@ -1,6 +1,5 @@
-#!/usr/bin/newlisp
 ;;
-;; newLISP Simple AR.Drone control
+;; newLISP Simple AR.Drone control commands
 ;;
 
 ;; Wireshark filter: udp port 5556
@@ -68,12 +67,8 @@
 ;;
 ;; Flight animations, e.g. (drone-flight 'wave 5000)
 ;;
-;;(define (drone-anim anim secs)
-;;	(dotimes (l 10)
-;;		(send-cmd (seq) "ANIM" (format "%d,%d" (find anim flight-anims) secs))))
 (define (drone-anim anim msecs)
-	(dotimes (l 1)
-		(send-cmd (seq) "CONFIG" (format {"control:flight_anim","%d,%d"} (find anim flight-anims) msecs))))
+	(send-cmd (seq) "CONFIG" (format {"control:flight_anim","%d,%d"} (find anim flight-anims) msecs)))
 
 (define (drone-take-off)
 	(send-cmd (seq) "REF" (format "%d" (bits-on 18 20 22 24 28 9))))
