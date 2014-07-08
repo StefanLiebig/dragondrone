@@ -56,7 +56,7 @@
 		((in? key '(key-lt key-plus))
 			(println "take-off")
 			(drone-init)
-			(drone-take-off))
+			(drone-takeoff))
 		((in? key '(key-gt key-hash))
 			(println "land")
 			(drone-land)
