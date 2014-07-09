@@ -1,13 +1,35 @@
 ;;
 ;; newLISP Simple AR.Drone control "UI"
 ;;
+;; Keys:
+;; +, < :     Takeoff
+;; #, > :     Landing
+;; space:     Hover
+;; cr:        Emergency
+;; tab:       Bye
+;; backspace: Reset watchdog
+;; 0 - 9:     speed
+;; a - z:     led animations
+;; A - Z      flight animations
+;;
+;; Arrow keys:                             Arrow keys with FN key pressed:
+;;           tilt fron                             go up
+;;               ^                                   ^
+;;               |                                   |
+;; tilt left <---+---> tilt right      spin left <---+---> spin right
+;;               |                                   |
+;;               v                                   v
+;;           tilt back                            go down
+;;
 
 (load "ncurses.lsp")
 (load "drone.lsp")
 
 ;; loops internally until end of game
 (define (drone-control)
-	(while (!= (let (ch (get-key)) (process-key ch)) key-tab)))
+	(while (!= (let (ch (get-key))
+		(process-key ch))
+			key-tab)))
 
 ;; initial speed (0..1.0)
 (set 'speed 0.1)
@@ -49,13 +71,14 @@
 		((range? key key-A key-Z)
 			(letn ((flight-ind (sub key key-A)) (anim (safe-nth flight-ind flight-anims)))
 				(println "flight animations: " anim)
-				(drone-anim anim 5)))
+				(drone-anim anim 5000)))
 		((= key key-space)
 			(println "hover")
 			(drone-hover))
 		((in? key '(key-lt key-plus))
 			(println "take-off")
 			(drone-init)
+			(drone-max-altitude 2000)
 			(drone-takeoff))
 		((in? key '(key-gt key-hash))
 			(println "land")
