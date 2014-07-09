@@ -70,6 +70,9 @@
 (define (drone-anim anim msecs)
 	(send-cmd (seq) "CONFIG" (format {"control:flight_anim","%d,%d"} (find anim flight-anims) msecs)))
 
+(define (drone-max-altitude mm)
+	(send-cmd (seq) "CONFIG" (format {"control:altitude_max","%d"} mm)))
+
 (define (drone-takeoff)
 	(send-cmd (seq) "REF" (format "%d" (bits-on 18 20 22 24 28 9))))
 
