@@ -2,6 +2,8 @@
 
 This project is inspired by [Carin Meier's](http://gigasquidsoftware.com/#/about/index) [Clojure Drone](https://github.com/gigasquid/clj-drone) project which controls an [Parrot AR Drone 2.0](http://ardrone2.parrot.com/) with [Clojure](http://clojure.org/).
 
+Watch the drone flying [here](https://copy.com/uipqcYsWL9jwTQ4b) while giving a presentation to my colleagues.
+
 This project uses newLISP which is compared to Clojure a flyweight.
 
 
