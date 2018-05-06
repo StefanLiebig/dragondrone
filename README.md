@@ -28,34 +28,27 @@ My .init.lsp contains a few functions and setup that are required for this proje
 	;; set local to the "C" locale on UT8
 	(if utf8
 		(set-locale "C"))
-	
+
 	;; test for 32-bit-ness
 	(define (bit32?)
 		(= (& (sys-info -1) 256)))
-	
+
 	;; define flt32 depending on the bit-ness
 	(if (bit32?)
 		(constant 'flt32 flt)
 		(define (flt32 f)
 			(first (unpack "ld" (pack "f" f)))))
-	
+
 	;; cool prompt ;-)
 	(prompt-event
 		(if (= ostype "Win32")
 			(fn (ctx) (string (char 159) ": "))     ;; win32 a nice 'f' (like function)
 			(fn (ctx) (string (char 955) ": "))))   ;; otherwise a cool lambda
-	
+
 	;; simple logger
 	(define (s-log msg)
 		(println msg)
 		nil)
 
- 
+
 The prompt-event function is not needed ;-)
-
-## License
-
-Copyright © 2014 Stefan Liebig
-
-Distributed under the [Eclipse Public License 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
